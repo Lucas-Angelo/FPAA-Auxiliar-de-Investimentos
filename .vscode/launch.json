@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "src.App",
+            "projectName": "FPAA-Auxiliar-de-Investimentos_49d21d2f"
+        },
+        {
+            "type": "java",
             "name": "Auxiliar de Investimentos",
             "request": "launch",
             "cwd": "${workspaceFolder}",
