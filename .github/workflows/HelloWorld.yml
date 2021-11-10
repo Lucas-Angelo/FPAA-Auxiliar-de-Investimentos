@@ -28,4 +28,4 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           architecture: x64
-      - run: java -cp java src/App.java
+      - run: java -cp java src/App
