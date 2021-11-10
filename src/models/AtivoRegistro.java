@@ -2,7 +2,7 @@ package src.models;
 
 import java.time.LocalDate;
 
-public class Ativo {
+public class AtivoRegistro {
 
     private static Integer ids;
     
@@ -26,11 +26,11 @@ public class Ativo {
         this.dividendo = dividendo;
     }
 
-    public Ativo() {
+    public AtivoRegistro() {
         ids++;
     }
 
-    public Ativo(String nome, String data, double preco, double valor, double dividendo) {
+    public AtivoRegistro(String nome, String data, double preco, double valor, double dividendo) {
         init(nome, data, preco, valor, dividendo);
         ids++;
     }
@@ -97,9 +97,9 @@ public class Ativo {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof Ativo))
+        if (!(obj instanceof AtivoRegistro))
             return false;
-        Ativo other = (Ativo) obj;
+        AtivoRegistro other = (AtivoRegistro) obj;
         if (this.id == null)
             if (other.id != null)
                 return false;

@@ -17,13 +17,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-        List<Ativo> ativos = preencherVetorAtivo();
+        List<AtivoRegistro> ativos = preencherVetorAtivoRegistros();
 
         System.out.println(ativos);
     }
 
-	public static List<Ativo> preencherVetorAtivo() {
-		List<Ativo> ativos = new ArrayList<>();
+	public static List<AtivoRegistro> preencherVetorAtivoRegistros() {
+		List<AtivoRegistro> ativos = new ArrayList<>();
 
 		leitura.abrirArquivo(arquivo);
 
@@ -34,7 +34,7 @@ public class App {
 			String[] dadosDaLinha = linha.split(",", 5); // Dividir os dados da linha (5 COLUNAS)
 
             if(linha!=null)
-                ativos.add(new Ativo(dadosDaLinha[0], dadosDaLinha[1], Double.parseDouble(dadosDaLinha[2]), Double.parseDouble(dadosDaLinha[3]), Double.parseDouble(dadosDaLinha[4])));
+                ativos.add(new AtivoRegistro(dadosDaLinha[0], dadosDaLinha[1], Double.parseDouble(dadosDaLinha[2]), Double.parseDouble(dadosDaLinha[3]), Double.parseDouble(dadosDaLinha[4])));
 
             linha = leitura.ler();
 		}

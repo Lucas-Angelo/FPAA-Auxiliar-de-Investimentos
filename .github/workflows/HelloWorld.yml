@@ -28,6 +28,6 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: find . -type f -name "*.java" -print | xargs javac -d classes # Compilar todos os ".java" para ".class" colocando pasta "classes"
 #      - run: javac -d classes ./src/helpers/ArquivoTextoLeitura.java
-#      - run: javac -d classes ./src/models/Ativo.java
+#      - run: javac -d classes ./src/models/AtivoRegistro.java
 #      - run: javac -d classes -cp "classes" ./src/App.java
       - run: java -cp "classes" src.App # Rodar o App.class do projeto que esta na pasta "classes"
