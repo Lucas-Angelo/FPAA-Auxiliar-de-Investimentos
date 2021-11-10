@@ -12,7 +12,7 @@ public class App {
     public static final ArquivoTextoLeitura leitura;
 
     static {
-        arquivo = "data.csv";
+        arquivo = "./data.csv";
         leitura = new ArquivoTextoLeitura();
     }
 
