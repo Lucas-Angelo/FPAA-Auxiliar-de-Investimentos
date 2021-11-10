@@ -32,4 +32,4 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: find . -type f -name "*.java" -print | xargs javac
       - run: ls
-      - run: java App.class
+      - run: java -cp java App
