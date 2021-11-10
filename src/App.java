@@ -3,8 +3,8 @@ package src;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.helpers.ArquivoTextoLeitura;
-import src.models.Ativo;
+import src.helpers.*;
+import src.models.*;
 
 public class App {
 
