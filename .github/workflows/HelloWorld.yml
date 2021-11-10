@@ -34,4 +34,5 @@ jobs:
 #      - run: java bin/src/"App"
       - run: javac -d classes ./helpers/ArquivoTextoLeitura.java
       - run: javac -d classes ./models/Ativo.java
-      - run: javac -d classes -cp "classes" ./src/App.java
+      - run: javac -d classes -cp "classes" ./App.java
+#      - run: java -cp "classes" ./src/App
