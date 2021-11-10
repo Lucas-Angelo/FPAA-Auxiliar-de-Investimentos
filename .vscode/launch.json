@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Auxiliar de Investimentos",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "src.App",
+            "projectName": "AuxiliarInvestimentos",
+            "args": ""
+        }
+    ]
+}
