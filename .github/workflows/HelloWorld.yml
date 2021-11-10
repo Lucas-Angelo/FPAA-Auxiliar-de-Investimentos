@@ -21,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup java
-        working-directory: ./src
         uses: actions/setup-java@v1
         with:
           java-version: '11' # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-      - run: java -cp java src/App.java
+        working-directory: ./app
+        run: java -cp java src/App.java
