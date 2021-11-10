@@ -31,3 +31,5 @@ jobs:
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
       - run: java -cp java App.java
+      - run: find ./src -iname *.java > files.txt
+      - run: javac @files.txt
