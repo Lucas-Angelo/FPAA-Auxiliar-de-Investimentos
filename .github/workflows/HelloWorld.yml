@@ -13,7 +13,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
+defaults:
+  run:
+    working-directory: /src
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,4 +30,4 @@ jobs:
           java-version: '11' # The JDK version to make available on the path.
           java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
           architecture: x64 # (x64 or x86) - defaults to x64
-      - run: java -cp java src/App.java
+      - run: java -cp java App
