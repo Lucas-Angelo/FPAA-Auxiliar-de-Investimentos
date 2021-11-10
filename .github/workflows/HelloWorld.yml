@@ -17,15 +17,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '8', '11', '13' ]
-    name: Java ${{ matrix.java }} sample
+    name: App
     steps:
       - uses: actions/checkout@v2
       - name: Setup java
         uses: joschi/setup-jdk@v2
         with:
-          java-version: ${{ matrix.java }}
+          java-version: 11
           architecture: x64
-      - run: java -cp java src/"App.java"
+      - run: java -cp java src/App.java
