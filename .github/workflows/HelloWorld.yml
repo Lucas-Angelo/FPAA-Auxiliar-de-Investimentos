@@ -13,10 +13,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: ./src/
-    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
@@ -32,7 +28,7 @@ jobs:
           architecture: x64 # (x64 or x86) - defaults to x64
 #      - run: find . -type f -name "*.java" -print | xargs javac -d bin
 #      - run: java bin/src/"App"
-      - run: javac -d classes ./helpers/ArquivoTextoLeitura.java
-      - run: javac -d classes ./models/Ativo.java
-      - run: javac -d classes -cp "classes" ./App.java
+      - run: javac -d classes ./src/helpers/ArquivoTextoLeitura.java
+      - run: javac -d classes ./src/models/Ativo.java
+      - run: javac -d classes -cp "classes" ./src/App.java
       - run: java -cp "classes" src.App
