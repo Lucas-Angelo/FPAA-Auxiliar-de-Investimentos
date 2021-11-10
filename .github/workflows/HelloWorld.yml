@@ -33,4 +33,4 @@ jobs:
       - run: find . -type f -name "*.java" -print | xargs javac -d bin
       - run: ls
       - run: ls bin
-      - run: java bin/src/App
+      - run: java bin/src/"App.class"
