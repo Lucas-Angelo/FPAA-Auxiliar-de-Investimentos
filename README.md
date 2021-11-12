@@ -1,4 +1,4 @@
-[![CI](https://github.com/Lucas-Angelo/FPAA-Auxiliar-de-Investimentos/actions/workflows/HelloWorld.yml/badge.svg?branch=main)](https://github.com/Lucas-Angelo/FPAA-Auxiliar-de-Investimentos/actions/workflows/HelloWorld.yml)
+[![CI](https://github.com/Lucas-Angelo/FPAA-Auxiliar-de-Investimentos/actions/workflows/App.yml/badge.svg)](https://github.com/Lucas-Angelo/FPAA-Auxiliar-de-Investimentos/actions/workflows/App.yml)
 # Fundamentos de Projeto e Análise de Algoritmos - Trabalho: Auxiliar-de-Investimentos
 ```
 Pontifícia Universidade Católica de Minas Gerais
