@@ -19,6 +19,8 @@ public class App {
     public static final String arquivo;
     public static final ArquivoTextoLeitura leitura;
 
+    public static List<Ativo> ativos;
+
     static {
         arquivo = "./data.csv";
         leitura = new ArquivoTextoLeitura();
@@ -30,16 +32,20 @@ public class App {
         Map<String, List<AtivoRegistro>> ativosRegistroDistintos = ativosRegistros.stream()
                 .collect(Collectors.groupingBy(AtivoRegistro::getNome));
 
-        List<Ativo> ativos = new ArrayList<Ativo>(ativosRegistroDistintos.size());
+        ativos = new ArrayList<Ativo>(ativosRegistroDistintos.size());
+
         Comparator<AtivoRegistro> comparadorPorData = Comparator.comparing( AtivoRegistro::getData );
         for (var entry : ativosRegistroDistintos.entrySet()) {
             Ativo ativo = new Ativo(entry.getKey());
+
             AtivoRegistro ativoRegistroMinData = entry.getValue().stream().min(comparadorPorData).get();
             AtivoRegistro ativoRegistroMaxData = entry.getValue().stream().max(comparadorPorData).get();
             ativo.setPrecoDeCompra(ativoRegistroMinData.getPreco());
             ativo.setPrecoDeVenda(ativoRegistroMaxData.getPreco());
+
             BigDecimal somaDividendos = entry.getValue().stream().map(x -> x.getDividendo()).reduce(BigDecimal.ZERO, BigDecimal::add);
             ativo.setAcumuloDeDividendos(somaDividendos);
+
             ativos.add(ativo);
         }
         

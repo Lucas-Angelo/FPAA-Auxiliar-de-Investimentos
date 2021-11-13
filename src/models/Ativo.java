@@ -35,7 +35,7 @@ public class Ativo {
 
     public BigDecimal calcRetornoEfetivo() {
         BigDecimal retornoEfetivo = BigDecimal.ZERO;
-        retornoEfetivo = ((this.precoDeVenda.add(this.acumuloDeDividendos)).subtract(this.precoDeCompra)).divide(this.precoDeCompra, MathContext.DECIMAL128);
+        retornoEfetivo = ((this.precoDeVenda.add(this.acumuloDeDividendos)).subtract(this.precoDeCompra)).divide(this.precoDeCompra, MathContext.DECIMAL32);
         return retornoEfetivo;
     }
 
