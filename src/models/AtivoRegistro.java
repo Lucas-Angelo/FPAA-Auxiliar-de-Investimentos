@@ -1,5 +1,6 @@
 package src.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class AtivoRegistro {
@@ -9,15 +10,15 @@ public class AtivoRegistro {
     private Integer id;
     private String nome;
     private LocalDate data;
-    private double preco;
-    private double valor;
-    private double dividendo; 
+    private BigDecimal preco;
+    private BigDecimal valor;
+    private BigDecimal dividendo; 
 
     static {
         ids=0;
     }
 
-    public void init(String nome, String data, double preco, double valor, double dividendo) {
+    public void init(String nome, String data, BigDecimal preco, BigDecimal valor, BigDecimal dividendo) {
         this.id = ids;
         this.nome = nome;
         this.data = LocalDate.parse(data);
@@ -30,7 +31,7 @@ public class AtivoRegistro {
         ids++;
     }
 
-    public AtivoRegistro(String nome, String data, double preco, double valor, double dividendo) {
+    public AtivoRegistro(String nome, String data, BigDecimal preco, BigDecimal valor, BigDecimal dividendo) {
         init(nome, data, preco, valor, dividendo);
         ids++;
     }
@@ -59,27 +60,27 @@ public class AtivoRegistro {
         this.data = data;
     }
 
-    public double getPreco() {
+    public BigDecimal getPreco() {
         return this.preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return this.valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
-    public double getDividendo() {
+    public BigDecimal getDividendo() {
         return this.dividendo;
     }
 
-    public void setDividendo(double dividendo) {
+    public void setDividendo(BigDecimal dividendo) {
         this.dividendo = dividendo;
     }
 
