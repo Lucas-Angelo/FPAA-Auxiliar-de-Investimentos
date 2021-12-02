@@ -14,6 +14,8 @@ public class Ativo {
     private BigDecimal precoDeCompra;
     private BigDecimal acumuloDeDividendos;
     
+    private BigDecimal retornoEfetivo;
+    private BigDecimal volatividade;
 
     static {
         ids = 0;
@@ -33,10 +35,10 @@ public class Ativo {
         ids++;
     }
 
-    public BigDecimal calcRetornoEfetivo() {
+    public void calcRetornoEfetivo() {
         BigDecimal retornoEfetivo = BigDecimal.ZERO;
         retornoEfetivo = ((this.precoDeVenda.add(this.acumuloDeDividendos)).subtract(this.precoDeCompra)).divide(this.precoDeCompra, MathContext.DECIMAL32);
-        return retornoEfetivo;
+        this.retornoEfetivo = retornoEfetivo;
     }
 
     public Integer getId() {
@@ -79,6 +81,22 @@ public class Ativo {
         this.acumuloDeDividendos = acumuloDeDividendos;
     }
 
+    public BigDecimal getRetornoEfetivo() {
+        return this.retornoEfetivo.multiply(BigDecimal.valueOf(100));
+    }
+
+    public void setRetornoEfetivo(BigDecimal retornoEfetivo) {
+        this.retornoEfetivo = retornoEfetivo;
+    }
+
+    public BigDecimal getVolatividade() {
+        return this.volatividade;
+    }
+
+    public void setVolatividade(BigDecimal volatividade) {
+        this.volatividade = volatividade;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -107,11 +125,13 @@ public class Ativo {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", nome='" + getNome() + "'" +
-            ", precoDeVenda='" + getPrecoDeVenda() + "'" +
-            ", precoDeCompra='" + getPrecoDeCompra() + "'" +
-            ", acumuloDeDividendos='" + getAcumuloDeDividendos() + "'" +
+            " id='" + this.getId() + "'" +
+            ", nome='" + this.getNome() + "'" +
+            ", precoDeVenda='" + this.getPrecoDeVenda() + "'" +
+            ", precoDeCompra='" + this.getPrecoDeCompra() + "'" +
+            ", acumuloDeDividendos='" + this.getAcumuloDeDividendos() + "'" +
+            ", retornoEfetivo='" + this.getRetornoEfetivo() + "'" +
+            ", volatividade='" + this.getVolatividade() + "'" +
             "}";
     }
     

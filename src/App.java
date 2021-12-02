@@ -1,6 +1,7 @@
 package src;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -45,15 +46,30 @@ public class App {
 
             BigDecimal somaDividendos = entry.getValue().stream().map(x -> x.getDividendo()).reduce(BigDecimal.ZERO, BigDecimal::add);
             ativo.setAcumuloDeDividendos(somaDividendos);
+            ativo.calcRetornoEfetivo();
+
+            
+            // BigDecimal somaVariacao = entry.getValue().stream().map(x -> ((x.getPreco().subtract(x.getPreco())))).reduce(BigDecimal.ZERO, BigDecimal::add);
+
+            ArrayList<BigDecimal> somaVariacaoArr = new ArrayList<BigDecimal>();
+            for(int z=0; z<entry.getValue().size(); z++) {
+                if(z!=0) {
+                    BigDecimal calc = new BigDecimal(entry.getValue().get(z).getPreco().subtract(entry.getValue().get(z-1).getPreco()).toString());
+                    somaVariacaoArr.add(calc);
+                }
+            }
+            BigDecimal desvioPadrao = Stdev.stddev(somaVariacaoArr, true, MathContext.DECIMAL32);
+            ativo.setVolatividade(desvioPadrao);
 
             ativos.add(ativo);
         }
         
         for (var ativo : ativos) {
-            System.out.println(ativo.calcRetornoEfetivo());
+            System.out.println(ativo);
         }
         
     }
+
 
     public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
         Set<Object> seen = ConcurrentHashMap.newKeySet();
