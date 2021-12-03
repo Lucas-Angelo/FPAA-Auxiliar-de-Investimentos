@@ -40,13 +40,13 @@ public class App {
             ativo.setAcumuloDeDividendos(somaDividendos);
             ativo.calcRetornoEfetivo();
 
-            BigDecimal[] totalWithCount
+            BigDecimal[] somaComContagem
             = entry.getValue().stream().map(x -> x.getPreco())
             .filter(bd -> bd != null)
             .map(bd -> new BigDecimal[]{bd, BigDecimal.ONE})
             .reduce((a, b) -> new BigDecimal[]{a[0].add(b[0]), a[1].add(BigDecimal.ONE)})
             .get();
-            BigDecimal mediaPreco = totalWithCount[0].divide(totalWithCount[1], MathContext.DECIMAL32);
+            BigDecimal mediaPreco = somaComContagem[0].divide(somaComContagem[1], MathContext.DECIMAL32);
             ativo.setMediaPreco(mediaPreco);
             
             ArrayList<BigDecimal> somaVariacaoArr = new ArrayList<BigDecimal>();
