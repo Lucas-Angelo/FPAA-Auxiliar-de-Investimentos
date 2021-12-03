@@ -60,6 +60,8 @@ public class App {
             ativo.setVolatividade(new BigDecimal(desvioPadrao.toString(), MathContext.DECIMAL32));
 
             ativo.calcRiscoNormalizado();
+            
+            ativo.calcRiscoRetorno();
 
             ativos.add(ativo);
         }

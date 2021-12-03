@@ -26,6 +26,9 @@ public class Ativo {
     // RISCO PERCENTUAL
     private BigDecimal riscoNormalizado;
 
+    // 
+    private BigDecimal riscoRetorno;
+
     static {
         ids = 0;
     }
@@ -123,7 +126,19 @@ public class Ativo {
     }
 
     public void calcRiscoNormalizado() {
-        this.riscoNormalizado = this.getVolatividade().divide(this.getMediaPreco(), MathContext.DECIMAL32);
+        this.riscoNormalizado = (this.getVolatividade().divide(this.getMediaPreco(), MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(100));
+    }
+
+    public BigDecimal getRiscoRetorno() {
+        return this.riscoRetorno;
+    }
+
+    public void setRiscoRetorno(BigDecimal riscoRetorno) {
+        this.riscoRetorno = riscoRetorno;
+    }
+
+    public void calcRiscoRetorno() {
+        this.riscoRetorno = this.getRiscoNormalizado().divide(this.getRetornoEfetivo(), MathContext.DECIMAL32).multiply(BigDecimal.valueOf(100));
     }
 
     @Override
@@ -163,6 +178,7 @@ public class Ativo {
             ", mediaPreco='" + this.getMediaPreco() + "'" +
             ", volatividade='" + this.getVolatividade() + "'" +
             ", riscoNormalizado='" + this.getRiscoNormalizado() + "'" +
+            ", riscoRetorno='" + this.getRiscoRetorno() + "'" +
             "}";
     }
     
