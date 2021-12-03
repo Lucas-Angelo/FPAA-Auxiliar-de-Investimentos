@@ -23,6 +23,9 @@ public class Ativo {
     // RISCO DO ATIVO: Desvio padrão dos preços do ativo, disperção dos dados em realação a média de preço
     private BigDecimal volatividade;
 
+    // RISCO PERCENTUAL
+    private BigDecimal riscoNormalizado;
+
     static {
         ids = 0;
     }
@@ -111,6 +114,18 @@ public class Ativo {
         this.mediaPreco = mediaPreco;
     }
 
+    public BigDecimal getRiscoNormalizado() {
+        return this.riscoNormalizado;
+    }
+
+    public void setRiscoNormalizado(BigDecimal riscoNormalizado) {
+        this.riscoNormalizado = riscoNormalizado;
+    }
+
+    public void calcRiscoNormalizado() {
+        this.riscoNormalizado = this.getVolatividade().divide(this.getMediaPreco(), MathContext.DECIMAL32);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -147,6 +162,7 @@ public class Ativo {
             ", retornoEfetivo='" + this.getRetornoEfetivo() + "'" +
             ", mediaPreco='" + this.getMediaPreco() + "'" +
             ", volatividade='" + this.getVolatividade() + "'" +
+            ", riscoNormalizado='" + this.getRiscoNormalizado() + "'" +
             "}";
     }
     

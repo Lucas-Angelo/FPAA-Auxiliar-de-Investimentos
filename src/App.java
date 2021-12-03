@@ -57,7 +57,9 @@ public class App {
                 }
             }
             BigDecimal desvioPadrao = Stdev.stddev(somaVariacaoArr, true, MathContext.DECIMAL32);
-            ativo.setVolatividade(desvioPadrao);
+            ativo.setVolatividade(new BigDecimal(desvioPadrao.toString(), MathContext.DECIMAL32));
+
+            ativo.calcRiscoNormalizado();
 
             ativos.add(ativo);
         }
