@@ -1,16 +1,8 @@
 package src;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.math.*;
+import java.util.*;
+import java.util.stream.*;
 
 import src.helpers.*;
 import src.models.*;
@@ -48,9 +40,15 @@ public class App {
             ativo.setAcumuloDeDividendos(somaDividendos);
             ativo.calcRetornoEfetivo();
 
+            BigDecimal[] totalWithCount
+            = entry.getValue().stream().map(x -> x.getPreco())
+            .filter(bd -> bd != null)
+            .map(bd -> new BigDecimal[]{bd, BigDecimal.ONE})
+            .reduce((a, b) -> new BigDecimal[]{a[0].add(b[0]), a[1].add(BigDecimal.ONE)})
+            .get();
+            BigDecimal mediaPreco = totalWithCount[0].divide(totalWithCount[1], MathContext.DECIMAL32);
+            ativo.setMediaPreco(mediaPreco);
             
-            // BigDecimal somaVariacao = entry.getValue().stream().map(x -> ((x.getPreco().subtract(x.getPreco())))).reduce(BigDecimal.ZERO, BigDecimal::add);
-
             ArrayList<BigDecimal> somaVariacaoArr = new ArrayList<BigDecimal>();
             for(int z=0; z<entry.getValue().size(); z++) {
                 if(z!=0) {
@@ -70,13 +68,7 @@ public class App {
         
     }
 
-
-    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-        Set<Object> seen = ConcurrentHashMap.newKeySet();
-        return t -> seen.add(keyExtractor.apply(t));
-    }
-
-    public static List<AtivoRegistro> preencherVetorAtivoRegistros() {
+    private static List<AtivoRegistro> preencherVetorAtivoRegistros() {
         List<AtivoRegistro> ativos = new ArrayList<>();
 
         leitura.abrirArquivo(arquivo);
@@ -97,4 +89,5 @@ public class App {
 
         return ativos;
     }
+    
 }

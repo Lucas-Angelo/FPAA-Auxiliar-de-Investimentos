@@ -14,7 +14,13 @@ public class Ativo {
     private BigDecimal precoDeCompra;
     private BigDecimal acumuloDeDividendos;
     
+    // O retorno total em % que o ativo rendeu
     private BigDecimal retornoEfetivo;
+
+    // RETORNO ESPERADO: Média de preços do ativo
+    private BigDecimal mediaPreco;
+
+    // RISCO DO ATIVO: Desvio padrão dos preços do ativo, disperção dos dados em realação a média de preço
     private BigDecimal volatividade;
 
     static {
@@ -97,6 +103,14 @@ public class Ativo {
         this.volatividade = volatividade;
     }
 
+    public BigDecimal getMediaPreco() {
+        return this.mediaPreco;
+    }
+
+    public void setMediaPreco(BigDecimal mediaPreco) {
+        this.mediaPreco = mediaPreco;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -131,6 +145,7 @@ public class Ativo {
             ", precoDeCompra='" + this.getPrecoDeCompra() + "'" +
             ", acumuloDeDividendos='" + this.getAcumuloDeDividendos() + "'" +
             ", retornoEfetivo='" + this.getRetornoEfetivo() + "'" +
+            ", mediaPreco='" + this.getMediaPreco() + "'" +
             ", volatividade='" + this.getVolatividade() + "'" +
             "}";
     }
