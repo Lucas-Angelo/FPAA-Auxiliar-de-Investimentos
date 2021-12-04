@@ -4,6 +4,8 @@ import java.math.*;
 import java.util.*;
 import java.util.stream.*;
 
+import src.algorithms.Guloso;
+import src.algorithms.IConstrutorDePortifolio;
 import src.helpers.*;
 import src.models.*;
 
@@ -69,6 +71,15 @@ public class App {
         for (var ativo : ativos) {
             System.out.println(ativo);
         }
+        
+        System.out.println("\n\n\nUEUM\n\n\nPortifolio de 5 ativos (abordagem gulosa, critério retoro efetivo): \n");
+
+        IConstrutorDePortifolio<Ativo> portiller = new Guloso<Ativo>( ativo -> ativo.getRetornoEfetivo().doubleValue() );
+        List<Ativo> portifolio = portiller.ContruirPortifolio(ativos, 5);
+        for (var ativo: portifolio){
+            System.out.println(ativo);
+        }
+        
         
     }
 
