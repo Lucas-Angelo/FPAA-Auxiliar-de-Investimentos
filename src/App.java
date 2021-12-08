@@ -4,8 +4,9 @@ import java.math.*;
 import java.util.*;
 import java.util.stream.*;
 
-import src.algorithms.Guloso;
+import src.algorithms.ForcaBruta;
 import src.algorithms.IConstrutorDePortifolio;
+import src.algorithms.Portifolio;
 import src.helpers.*;
 import src.models.*;
 
@@ -17,7 +18,7 @@ public class App {
     public static List<Ativo> ativos;
 
     static {
-        arquivo = "./data.csv";
+        arquivo = "./datinha.csv";
         leitura = new ArquivoTextoLeitura();
     }
 
@@ -65,21 +66,25 @@ public class App {
             
             ativo.calcRiscoRetorno();
 
-            ativos.add(ativo);
+            if (ativo.getRetornoEfetivo().doubleValue() > 0)
+                ativos.add(ativo);
         }
         
         for (var ativo : ativos) {
             System.out.println(ativo);
         }
         
-        System.out.println("\n\n\nUEUM\n\n\nPortifolio de 5 ativos (abordagem gulosa, critério retoro efetivo): \n");
+        System.out.println("\n\n\nUEUM\n\n\nPortifolio força bruta: \n");
 
-        IConstrutorDePortifolio<Ativo> portiller = new Guloso<Ativo>( ativo -> ativo.getRetornoEfetivo().doubleValue() );
-        List<Ativo> portifolio = portiller.ContruirPortifolio(ativos, 5);
-        for (var ativo: portifolio){
-            System.out.println(ativo);
-        }
-        
+        var dateinic = new Date();
+        IConstrutorDePortifolio portiller = new ForcaBruta();
+        Portifolio portifolio = portiller.ContruirPortifolio(ativos);
+
+        System.out.println(portifolio);
+
+        System.out.println("\n\n");
+        System.out.println(dateinic);
+        System.out.println(new Date());
         
     }
 
