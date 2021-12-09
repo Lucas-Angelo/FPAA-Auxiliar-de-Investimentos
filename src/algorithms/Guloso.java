@@ -4,26 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class Guloso<T> implements IConstrutorDePortifolio<T>{
-    private Function<T, Double> criterioGuloso;
+import src.models.Ativo;
 
-    public Guloso(Function<T, Double> criterioGulo){
+public class Guloso implements IConstrutorDePortifolio{
+    private Function<Ativo, Double> criterioGuloso;
+
+    public Guloso(Function<Ativo, Double> criterioGulo){
         this.criterioGuloso = criterioGulo;
     }
 
     @Override
-    public List<T> ContruirPortifolio(List<T> dados, int maximo) {
+    public Portifolio ContruirPortifolio(List<Ativo> dados) {
+        int maximo = 5;
         // clonar vetor de dados
-        List<T> ordenadoPorCriterio = new ArrayList<>(dados);
+        List<Ativo> ordenadoPorCriterio = new ArrayList<>(dados);
         // ordena o vetor de dados pelo critério guloso
         ordenadoPorCriterio.sort((a,b)->{
             return (int)(this.criterioGuloso.apply(b) - this.criterioGuloso.apply(a));
         });
         // controi portifolio a partir de dados ordenados
         int quantidade = maximo > ordenadoPorCriterio.size() ? ordenadoPorCriterio.size() : maximo ;
-        List<T> portifolio = ordenadoPorCriterio.subList(0, quantidade);
+        List<Ativo> portifolio = ordenadoPorCriterio.subList(0, quantidade);
 
-        return portifolio;
+        return null;
     }
 
 }
