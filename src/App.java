@@ -4,6 +4,7 @@ import java.math.*;
 import java.util.*;
 import java.util.stream.*;
 
+import src.algorithms.Aleatorio;
 import src.algorithms.ForcaBruta;
 import src.algorithms.Guloso;
 import src.algorithms.IConstrutorDePortifolio;
@@ -90,6 +91,18 @@ public class App {
 
         dateinic = new Date();
         portiller = new Guloso( ativo -> ativo.getRiscoRetorno().doubleValue() );
+        portifolio = portiller.ContruirPortifolio(ativos);
+
+        System.out.println(portifolio);
+
+        System.out.println("\n\n");
+        System.out.println(dateinic);
+        System.out.println(new Date());
+
+        System.out.println("\n\n\nUEUM\n\n\nPortifolio Aleatório: \n");
+
+        dateinic = new Date();
+        portiller = new Aleatorio();
         portifolio = portiller.ContruirPortifolio(ativos);
 
         System.out.println(portifolio);
