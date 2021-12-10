@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import src.models.Ativo;
+import src.models.Portifolio;
 
 public class ForcaBruta implements IConstrutorDePortifolio {
 
