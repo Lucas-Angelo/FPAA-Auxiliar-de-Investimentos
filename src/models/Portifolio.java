@@ -1,9 +1,7 @@
-package src.algorithms;
+package src.models;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import src.models.Ativo;
 
 public class Portifolio {
     // mapa de ativos Ativo:Peso
@@ -50,6 +48,17 @@ public class Portifolio {
 
         double riscoRetorno = somaRiscoRetorno / ativos.size();
         return riscoRetorno;
+    }
+
+    public double getPesoTotal(){
+        return ativos.values()
+            .stream()
+            .reduce(Double::sum)
+            .orElse(0.0);
+    }
+
+    public Map<Ativo, Double> getAtivos() {
+        return ativos;
     }
 
     @Override
