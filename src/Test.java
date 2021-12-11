@@ -11,7 +11,7 @@ import src.algorithms.IConstrutorDePortifolio;
 import src.helpers.*;
 import src.models.*;
 
-public class App {
+public class Test {
 
     public static final String arquivo;
     public static final ArquivoTextoLeitura leitura;
@@ -19,7 +19,7 @@ public class App {
     public static List<Ativo> ativos;
 
     static {
-        arquivo = "./data.csv";
+        arquivo = "./datinha.csv";
         leitura = new ArquivoTextoLeitura();
     }
 
@@ -119,33 +119,17 @@ public class App {
     }
 
     /**
-     * Solicita quais ativos deseja-se utilizar nos algortimos (RECOMENDÁVEL NO MÁXIMO 5 ATIVOS)
-     * Inserir 'y' (yes) para adicionar o ativo
      * Roda os algoritmos de Força Bruta, Guloso e Aleatório.
-     * Comunicação e retornos por command line interface.
      */
     private static void rodarAlgortimosPorCLI() {
-        List<Ativo> ativosUsados = new ArrayList<Ativo>();
-        
-        Scanner sc = new Scanner(System.in);
-        for(int i=0; i<ativos.size(); i++) {
-            System.out.println("\nVocê deseja adicionar o seguinte ativo?");
-            System.out.println(ativos.get(i));
-            System.out.println("Escreva y/n");
-            String res = sc.nextLine();
-            if(res.equals("y"))
-                ativosUsados.add(ativos.get(i));
-        }
-        sc.close();
-
-        for (var ativo : ativosUsados) {
+        for (var ativo : ativos) {
             System.out.println(ativo);
         }
         
         System.out.println("\n\n\nPortifolio força bruta: \n");
         var dateinic = new Date();
         IConstrutorDePortifolio portiller = new ForcaBruta();
-        Portifolio portifolio = portiller.ContruirPortifolio(ativosUsados);
+        Portifolio portifolio = portiller.ContruirPortifolio(ativos);
         System.out.println(portifolio);
         System.out.println("\n\n");
         System.out.println(dateinic);
@@ -154,7 +138,7 @@ public class App {
         System.out.println("\n\n\nPortifolio Guloso: \n");
         dateinic = new Date();
         portiller = new Guloso( ativo -> ativo.getRiscoRetorno().doubleValue() );
-        portifolio = portiller.ContruirPortifolio(ativosUsados);
+        portifolio = portiller.ContruirPortifolio(ativos);
         System.out.println(portifolio);
         System.out.println("\n\n");
         System.out.println(dateinic);
@@ -163,7 +147,7 @@ public class App {
         System.out.println("\n\n\nPortifolio Aleatório: \n");
         dateinic = new Date();
         portiller = new Aleatorio();
-        portifolio = portiller.ContruirPortifolio(ativosUsados);
+        portifolio = portiller.ContruirPortifolio(ativos);
         System.out.println(portifolio);
         System.out.println("\n\n");
         System.out.println(dateinic);

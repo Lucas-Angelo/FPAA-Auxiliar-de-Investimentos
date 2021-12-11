@@ -30,4 +30,4 @@ jobs:
 #      - run: javac -d classes ./src/helpers/ArquivoTextoLeitura.java
 #      - run: javac -d classes ./src/models/AtivoRegistro.java
 #      - run: javac -d classes -cp "classes" ./src/App.java
-      - run: java -cp "classes" src.App # Rodar o App.class do projeto que esta na pasta "classes"
+      - run: java -cp "classes" src.Test # Rodar o App.class do projeto que esta na pasta "classes"

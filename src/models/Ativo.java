@@ -23,10 +23,10 @@ public class Ativo {
     // RISCO DO ATIVO: Desvio padrão dos preços do ativo, disperção dos dados em realação a média de preço
     private BigDecimal volatividade;
 
-    // RISCO PERCENTUAL
+    // RISCO PERCENTUAL do ativo
     private BigDecimal riscoNormalizado;
 
-    // 
+    // RISCO RETORNO do ativo
     private BigDecimal riscoRetorno;
 
     static {
@@ -47,6 +47,9 @@ public class Ativo {
         ids++;
     }
 
+    /**
+     * Calcula e salva o Retorno Efetivo
+     */
     public void calcRetornoEfetivo() {
         BigDecimal retornoEfetivo = BigDecimal.ZERO;
         retornoEfetivo = ((this.precoDeVenda.add(this.acumuloDeDividendos)).subtract(this.precoDeCompra)).divide(this.precoDeCompra, MathContext.DECIMAL32);
@@ -125,6 +128,9 @@ public class Ativo {
         this.riscoNormalizado = riscoNormalizado;
     }
 
+    /**
+     * Calcula e salva o Risco Normalizado
+     */
     public void calcRiscoNormalizado() {
         this.riscoNormalizado = (this.getVolatividade().divide(this.getMediaPreco(), MathContext.DECIMAL32)).multiply(BigDecimal.valueOf(100));
     }
@@ -137,6 +143,9 @@ public class Ativo {
         this.riscoRetorno = riscoRetorno;
     }
 
+    /**
+     * Calcula e salva o Retorno Retorno
+     */
     public void calcRiscoRetorno() {
         this.riscoRetorno = this.getRiscoNormalizado().divide(this.getRetornoEfetivo(), MathContext.DECIMAL32).multiply(BigDecimal.valueOf(100));
     }

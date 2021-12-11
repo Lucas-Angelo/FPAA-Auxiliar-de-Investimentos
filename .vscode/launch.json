@@ -6,16 +6,23 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch Test",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "src.Test",
+            "projectName": "FPAA-Auxiliar-de-Investimentos_49d21d2f"
         },
         {
             "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "src.App",
-            "projectName": "FPAA-Auxiliar-de-Investimentos_ed0802fd"
+            "projectName": "FPAA-Auxiliar-de-Investimentos_49d21d2f"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }
