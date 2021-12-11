@@ -1,5 +1,6 @@
 package src;
 
+import java.io.File;
 import java.math.*;
 import java.util.*;
 import java.util.stream.*;
@@ -13,12 +14,14 @@ import src.models.*;
 
 public class App {
 
-    public static final String arquivo;
+    public static String arquivo;
     public static final ArquivoTextoLeitura leitura;
+    public static Scanner sc;
 
     public static List<Ativo> ativos;
 
     static {
+        sc = new Scanner(System.in);
         arquivo = "./data.csv";
         leitura = new ArquivoTextoLeitura();
     }
@@ -27,6 +30,16 @@ public class App {
      * Função principal do programa que irá chamar mapeamento dos registros de ativos, chamar cálculo dos ativos e rodar os algoritmos
      */
     public static void main(String[] args) {
+        System.out.println("Você deseja selecionar um arquivo data customizado? y/n");
+        String res = sc.nextLine();
+        File diretorio = new File("./data.csv");
+        if(res.equals("y")) {
+            System.out.println("Insira o diretório do arquivo data (Exemplo: C:\\Users\\Admin\\Downloads\\data.csv):");
+            diretorio = new File(sc.nextLine());
+        }
+        arquivo = diretorio.toString();
+        System.out.println("Arquivo data utilizado: " + arquivo);
+
         List<AtivoRegistro> ativosRegistros = preencherVetorAtivoRegistros(); // Leitura de dados do .csv
 
         Map<String, List<AtivoRegistro>> ativosRegistroDistintos = ativosRegistros.stream()
@@ -127,7 +140,6 @@ public class App {
     private static void rodarAlgortimosPorCLI() {
         List<Ativo> ativosUsados = new ArrayList<Ativo>();
         
-        Scanner sc = new Scanner(System.in);
         for(int i=0; i<ativos.size(); i++) {
             System.out.println("\nVocê deseja adicionar o seguinte ativo?");
             System.out.println(ativos.get(i));
@@ -138,34 +150,38 @@ public class App {
         }
         sc.close();
 
+        System.out.println("\nAtivos que serão utilizados (Recomendado até 5): " + ativosUsados.size());
         for (var ativo : ativosUsados) {
             System.out.println(ativo);
         }
+
+        if(ativosUsados.size()==0) // Deve utilizar no mínimo 1 ativo
+            ativosUsados.add(ativos.get(0));
         
-        System.out.println("\n\n\nPortifolio força bruta: \n");
+        System.out.println("\n\n\nPortifolio força bruta: ");
         var dateinic = new Date();
         IConstrutorDePortifolio portiller = new ForcaBruta();
         Portifolio portifolio = portiller.ContruirPortifolio(ativosUsados);
         System.out.println(portifolio);
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println(dateinic);
         System.out.println(new Date());
 
-        System.out.println("\n\n\nPortifolio Guloso: \n");
+        System.out.println("\n\n\nPortifolio Guloso: ");
         dateinic = new Date();
         portiller = new Guloso( ativo -> ativo.getRiscoRetorno().doubleValue() );
         portifolio = portiller.ContruirPortifolio(ativosUsados);
         System.out.println(portifolio);
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println(dateinic);
         System.out.println(new Date());
 
-        System.out.println("\n\n\nPortifolio Aleatório: \n");
+        System.out.println("\n\n\nPortifolio Aleatório: ");
         dateinic = new Date();
         portiller = new Aleatorio();
         portifolio = portiller.ContruirPortifolio(ativosUsados);
         System.out.println(portifolio);
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println(dateinic);
         System.out.println(new Date());
     }
