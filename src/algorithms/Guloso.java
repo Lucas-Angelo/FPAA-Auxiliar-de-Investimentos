@@ -10,6 +10,11 @@ import src.models.Portifolio;
 public class Guloso implements IConstrutorDePortifolio{
     private Function<Ativo, Double> criterioGuloso;
 
+    /**
+     * instancia um Construtor de Portifolio Guloso
+     * @param criterioGulo criterio que será usado para ordenação 
+     * dos ativos, de maneira a usar para obter a solução gulosa
+     */
     public Guloso(Function<Ativo, Double> criterioGulo){
         this.criterioGuloso = criterioGulo;
     }
@@ -39,6 +44,15 @@ public class Guloso implements IConstrutorDePortifolio{
         return portifolio;
     }
 
+    /**
+     * Gera um portifolio com um ativo e peso novo com base em um
+     * portifolio antigo sem estourar o 100% de peso
+     * @param portifolioAntigo portifolio base para geração
+     * @param ativoNovo ativo a ser adicionado no portifolio base
+     * @param pesoNovo peso para o ativo novo
+     * @param ativoDeTroca ativo que será descontado para compensação do ativo novo
+     * @return portifolio novo e compensado
+     */
     private Portifolio GeraPortifolioAdaptado( Portifolio portifolioAntigo, Ativo ativoNovo, double pesoNovo, Ativo ativoDeTroca ){
         if (portifolioAntigo.getAtivos().size()==0){
             Portifolio novoPortifolio = new Portifolio();
