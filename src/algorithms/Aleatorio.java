@@ -24,6 +24,12 @@ public class Aleatorio implements IConstrutorDePortifolio {
         return portifolio;
     }
 
+    /**
+     * Gera um numero randomico
+     * @param min número mínimo que será gerado
+     * @param max número máximo que será gerado
+     * @return número aleatório
+     */
     private double GetRandom(double min, double max){
         return new Random().nextInt((int)max + 1) + min;
     }

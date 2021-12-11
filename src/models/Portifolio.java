@@ -11,10 +11,19 @@ public class Portifolio {
         ativos = new HashMap<>();
     }
 
+    /**
+     * Adiciona ativo a portifólio ( não faz nenhuma compensação ou  comparação de peso)
+     * @param ativo para se adicionar ao portifólio
+     * @param peso para se adicionar no ativo para o portifólio
+     */
     public void Add(Ativo ativo, double peso){
         ativos.put(ativo, peso);
     }
 
+    /**
+     * Faz o cálculo e retorna o retorno do portifólio
+     * @return retorno do portifólio
+     */
     public double getRetorno(){
         double somaRetorno = ativos.entrySet().stream().map( (var entry) -> {
             Ativo ativo = entry.getKey();
@@ -26,6 +35,10 @@ public class Portifolio {
         return somaRetorno;
     }
 
+    /**
+     * Faz o cálculo e retorna o risco do portifólio
+     * @return risco do portifólio
+     */
     public double getRisco(){
         double somaRisco = ativos.entrySet().stream().map( (var entry) -> {
             Ativo ativo = entry.getKey();
@@ -38,6 +51,10 @@ public class Portifolio {
         return risco;
     }
 
+    /**
+     * Faz o cálculo e retorna o risco/retorno do portifólio
+     * @return riscoRetorno do portifólio
+     */
     public double getRiscoRetorno(){
         double somaRiscoRetorno = ativos.entrySet().stream().map( (var entry) -> {
             Ativo ativo = entry.getKey();
@@ -50,13 +67,9 @@ public class Portifolio {
         return riscoRetorno;
     }
 
-    public double getPesoTotal(){
-        return ativos.values()
-            .stream()
-            .reduce(Double::sum)
-            .orElse(0.0);
-    }
-
+    /**
+     * @return mapa de ativos do Portifolio
+     */
     public Map<Ativo, Double> getAtivos() {
         return ativos;
     }

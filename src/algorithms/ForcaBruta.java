@@ -11,10 +11,11 @@ import src.models.Portifolio;
 
 public class ForcaBruta implements IConstrutorDePortifolio {
 
+    @Override
     public Portifolio ContruirPortifolio(List<Ativo> dados) {
 
         LinkedList<List<Double>> permutacoesPeso = this.PermutarPorcentagens(new HashMap<>(), dados.size(), 100);
-        System.out.println(permutacoesPeso.size());
+        System.out.print(permutacoesPeso.size());
         // Gera portifolios
         List<Portifolio> lstPortifolios = new ArrayList<>(permutacoesPeso.size());
         do {
@@ -44,6 +45,14 @@ public class ForcaBruta implements IConstrutorDePortifolio {
         return melhorPortifolio;
     }
 
+    /**
+     * Gera todas as permitações de quantidade passada
+     * no parâmetro, podendo assumir valores de 0 a max 
+     * @param permutacoesAtuais permutações que já foram computadas
+     * @param quantidade quantidade de valores da permuta
+     * @param max valor maximo de valores da permuta
+     * @return todas permutações para os parâmetros
+     */
     private LinkedList<List<Double>> PermutarPorcentagens( Map<String, List<List<Double>>> permutacoesAtuais, int quantidade, double max ){
         if (quantidade == 0)
             return new LinkedList<>();
@@ -82,6 +91,15 @@ public class ForcaBruta implements IConstrutorDePortifolio {
         return lstPermutacoes;
     }
 
+    /**
+     * Retorna o valor da permutação para os parâmetros, 
+     * sendo pré calculado e presente no permutacoesAtuais
+     * ou calculando pela função PermutarPorcentagens
+     * @param permutacoesAtuais mapa de permutações já calculadas
+     * @param quantidade quantidade de valores da permuta
+     * @param max valor maximo de valores da permuta
+     * @return permutação dos parâmetros
+     */
     private List<List<Double>> GetPermutarPorcentagens( Map<String, List<List<Double>>> permutacoesAtuais, int quantidade, double max ){
         if (permutacoesAtuais == null){
             permutacoesAtuais = new HashMap<>();
