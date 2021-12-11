@@ -15,7 +15,7 @@ public class ForcaBruta implements IConstrutorDePortifolio {
     public Portifolio ContruirPortifolio(List<Ativo> dados) {
 
         LinkedList<List<Double>> permutacoesPeso = this.PermutarPorcentagens(new HashMap<>(), dados.size(), 100);
-        System.out.println(permutacoesPeso.size());
+        System.out.print(permutacoesPeso.size());
         // Gera portifolios
         List<Portifolio> lstPortifolios = new ArrayList<>(permutacoesPeso.size());
         do {
